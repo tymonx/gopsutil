@@ -40,6 +40,12 @@ type TemperatureStat struct {
 	Critical    float64 `json:"sensorCritical"`
 }
 
+// FanStat describes a fan status.
+type FanStat struct {
+	SensorKey string  `json:"sensorKey"`   // Fan sensor key name
+	Speed     float64 `json:"sensorSpeed"` // Current fan speed in RPM (rounds per minute)
+}
+
 func (h InfoStat) String() string {
 	s, _ := json.Marshal(h)
 	return string(s)
@@ -52,5 +58,11 @@ func (u UserStat) String() string {
 
 func (t TemperatureStat) String() string {
 	s, _ := json.Marshal(t)
+	return string(s)
+}
+
+// String returns a JSON representation of fan.
+func (f FanStat) String() string {
+	s, _ := json.Marshal(f)
 	return string(s)
 }
